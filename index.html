@@ -1,1 +1,45 @@
-<h1>Random dad joke</h1>
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Untitled Document</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;700&display=swap" rel="stylesheet">
+<style>
+    h1 {font-family: 'Roboto', sans-serif; font-weight: 700;}
+    p {font-family: 'Roboto', sans-serif; font-weight: 300;}    
+    .container {width:100%; margin: 0 auto;}
+    .joke{height: 100px;}
+    
+    </style>    
+    
+</head>
+
+<body>
+    
+    
+    <script>
+fetch('https://us-central1-dadsofunny.cloudfunctions.net/DadJokes/random/jokes')
+  .then(function(response) {
+      if (!response.ok) {
+        throw new Error("HTTP error, status = " + response.status);
+      }
+      return response.json();
+    })
+.then(function(json) {
+    document.getElementById("setup").innerText = json.setup
+    document.getElementById("punchline").innerText = json.punchline
+})
+       
+    </script>
+    
+    <div class="container">
+    <div align="center"><h1>Random Joke Generator</h1></div>
+        <div class="joke">
+    <div align="center"><p id="setup"></p></div> 
+    <div align="center"><p id="punchline"></p></div>
+        </div>  
+        <div align="center"><button><a onClick="window.location.reload()">New joke</a></button></div>
+    </div>
+</body>
+</html>
